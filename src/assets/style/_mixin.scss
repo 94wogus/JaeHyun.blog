@@ -1,0 +1,102 @@
+@import "./variables";
+
+@mixin contentHeight{
+    min-height: calc(100vh - #{$headerHeight} - #{$headerYpadding} - #{$headerYpadding} - #{$footerHeight} - #{$footerYpadding} - #{$footerYpadding});
+}
+
+// float clear
+@mixin clear {
+    &::after {
+        content: "";
+        display: block;
+        clear: both;
+    }
+}
+
+@mixin ellipsis($line: 1) {
+    @if ($line == 1) {
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+    } @else {
+        display: -webkit-box;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        -webkit-box-orient: vertical;
+        -webkit-line-clamp: $line;
+    }
+}
+
+@mixin background($url, $x, $y, $width, $height) {
+    background-image: url($url);
+    background-position: ($x) ($y);
+    background-size: $width $height;
+}
+
+@mixin mobile {
+    @media (min-width: #{$breakpoint-mobile}) and (max-width: #{$breakpoint-tablet - 1px}) {
+        @content;
+    }
+}
+  
+@mixin tablet {
+    @media (min-width: #{$breakpoint-tablet}) and (max-width: #{$breakpoint-desktop - 1px}) {
+        @content;
+    }
+}
+  
+@mixin desktop {
+    @media (min-width: #{$breakpoint-desktop}) {
+        @content;
+    }
+}
+
+// ======================================= common ======================================= //
+@mixin out-shadow($horizontal, $vertical, $blurRadius, $spreadRadius, $color) {
+    box-shadow: $horizontal $vertical $blurRadius $spreadRadius $color;
+    -moz-box-shadow: $horizontal $vertical $blurRadius $spreadRadius $color;
+    -webkit-box-shadow: $horizontal $vertical $blurRadius $spreadRadius $color;
+    -o-box-shadow: $horizontal $vertical $blurRadius $spreadRadius $color;
+    -ms-box-shadow: $horizontal $vertical $blurRadius $spreadRadius $color;
+}
+
+@mixin inline-block-box($vertical-align: top) {
+  display: inline-block;
+  vertical-align: $vertical-align;
+}
+
+@mixin cover-img($width, $height) {
+    width: $width;
+    height: $height;
+    object-fit: cover;
+}
+
+@mixin flex-center($justifyContent:center, $alignItems: center,$direction: row, ) {
+    display: flex;
+    justify-content: $justifyContent;
+    align-items: $alignItems;
+    flex-direction: $direction;
+}
+
+// ======================================= animation ======================================= //
+@mixin animation ($delay, $duration, $name) {
+    animation-delay: $delay;
+    animation-duration: $duration;
+    animation-name: $name
+}
+
+@mixin keyframe ($animation_name) {
+    @keyframes #{$animation_name} {
+        @content;
+    }
+}
+
+@mixin fade-in-out($delay, $duration) {
+    @include keyframe(fadeInOut){
+        from {opacity: 0;}
+        50%{opacity: 1;}
+        to{opacity: 0;}
+    }
+
+    @include animation($delay, $duration, fadeInOut)
+}
