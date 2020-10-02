@@ -152,7 +152,7 @@
   },
   "_moduleAliases": {
     "@": "src",
-    "@api": "src/api",
+    "@api": "src/utils/api",
     "@assets": "src/assets",
     "@image": "src/assets/image",
     "@store": "src/store",
