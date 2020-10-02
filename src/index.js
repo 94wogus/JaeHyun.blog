@@ -11,9 +11,6 @@ import store from '@/store';
 import '@assets/style/common.css';
 import '@assets/style/desktop.scss';
 
-// import { ToastContainer } from 'react-toastify';
-// import 'react-toastify/dist/ReactToastify.css';
-
 const App = () => {
     const history = createBrowserHistory();
     return (
@@ -25,17 +22,6 @@ const App = () => {
                 ))}
                 </Switch>
             </Router>
-            {/* <ToastContainer 
-                position="top-right"
-                autoClose={3000}
-                hideProgressBar={false}
-                newestOnTop={false}
-                closeOnClick
-                rtl={false}
-                pauseOnFocusLoss
-                draggable
-                pauseOnHover
-            /> */}
         </Fragment>
     )
 }

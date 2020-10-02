@@ -86,66 +86,120 @@
         background: $background;
     }
 
-    #profileContainer{
-        padding: 50px;
-        @include flex-center;
-        .profileImage{
-            @include cover-img(20vw, 20vw);
-            border-radius: 15vw;
-        };
-        .profile{
-            margin-left: 5vw;
-            @include flex-center($alignItems:flex-start, $direction: column);
-            font-family: "NanumSquare";
-            font-size: 20px;
-            div{
-                margin: 10px;
-                span{
-                    font-weight: 800;
-                };
-                a{  
-                    padding: 3px 12px;
-                    text-align: center;
-                    text-decoration: none;
-                    color: black;
-                    font-size: 20px;
-                    border-radius: 10px;
+    #home{
+        #profileContainer{
+            padding: 50px;
+            @include flex-center;
+            .profileImage{
+                @include cover-img(20vw, 20vw);
+                border-radius: 15vw;
+            };
+            .profile{
+                margin-left: 5vw;
+                @include flex-center($alignItems:flex-start, $direction: column);
+                font-family: "NanumSquare";
+                font-size: 20px;
+                div{
+                    margin: 10px;
+                    span{
+                        font-weight: 800;
+                    };
+                    a{  
+                        padding: 3px 12px;
+                        text-align: center;
+                        text-decoration: none;
+                        color: black;
+                        font-size: 20px;
+                        border-radius: 10px;
+                        transition: all 0.2s ease-in-out;
+                        position: relative;
+                        overflow: hidden;
+                    }
+                    a:before {
+                        content: "";
+                        background-color: rgba(255,255,255,0);
+                        height: 100%;
+                        width: 30px;
+                        display: block;
+                        position: absolute;
+                        top: 0;
+                        left: -45px;
+                        transform: skewX(-45deg) translateX(-10px);
+                        transition: none;
+                    }
+                    a:hover {
+                        background-color: $keycolor2;
+                        color: #fff;
+                    }
+                    a:hover:before {
+                        background-color: rgba(255,255,255,0.4);
+                        transform: skewX(-45deg) translateX(300px);
+                        transition: all 0.5s ease-in-out;
+                    }
+                }
+                .snsList{
+                    @include flex-center($justifyContent:space-around);
+                    width: 100%;
                     transition: all 0.2s ease-in-out;
-                    position: relative;
-                    overflow: hidden;
-                }
-                a:before {
-                    content: "";
-                    background-color: rgba(255,255,255,0);
-                    height: 100%;
-                    width: 30px;
-                    display: block;
-                    position: absolute;
-                    top: 0;
-                    left: -45px;
-                    transform: skewX(-45deg) translateX(-10px);
-                    transition: none;
-                }
-                a:hover {
-                    background-color: $keycolor2;
-                    color: #fff;
-                }
-                a:hover:before {
-                    background-color: rgba(255,255,255,0.4);
-                    transform: skewX(-45deg) translateX(300px);
-                    transition: all 0.5s ease-in-out;
+                    .icon{
+                        color: black;
+                        font-size: 40px;
+                    }
+                    .icon:hover{
+                        color: $keycolor2;
+                    }
                 }
             }
-            .snsList{
-                @include flex-center($justifyContent:space-around);
-                width: 100%;
-                transition: all 0.2s ease-in-out;
-                .icon{
-                    color: black;
-                    font-size: 40px;
-                }
-                .icon:hover{
-                    color: $keycolor2;
+        }
+        .mainPosts{
+            width: 80%;
+            margin-bottom: 50px;
+            .PostWarp{
+                @include flex-center($justifyContent:flex-start, $direction:column);
+                .PostCard{
+                    margin: 20px 0px;
+                    width: 100%;
+                    height: 20vh;
+                    @include flex-center($justifyContent:space-around, $direction:column);
+                    .PostContent{
+                        @include flex-center($justifyContent:flex-start);
+                        padding: 2.5vh 6vh;
+                        .PostImage{
+                            height: 15vh;
+                            width: 15vh;
+                            img{
+                                @include cover-img(15vh, 15vh);
+                            }
+                        }
+                        .PostInfo{
+                            @include flex-center($justifyContent:space-around, $alignItems:flex-start, $direction:column);
+                            min-width: calc(100% - 15vh - 20px);
+                            max-width: calc(100% - 15vh - 20px);
+                            margin-left: 20px;
+                            font-family: "NanumSquare";
+                            .title{
+                                @include ellipsis;
+                                width: 100%;
+                                margin-top: 15px;
+                                margin-bottom: 7px;
+                                font-size: 25px;
+                                font-weight: 800;
+                            }
+                            .description{
+                                @include ellipsis($line:2);
+                                width: 100%;
+                                margin-top: 7px;
+                                margin-bottom: 30px;
+                                font-size: 18px;
+                            }
+                            .time{
+                                align-self: flex-end;
+                                font-size: 14px;
+                                color: #9c9c9c;
+                                font-weight: 700;
+                            }
+                        }
+                    }
                 }
             }
         }
