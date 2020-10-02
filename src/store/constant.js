@@ -1,4 +1,4 @@
 export default {
     //  ============== 0. Home ==============  //
-    // LOG_IN: "LOG_IN",
+    TOGGLE_DRAWER: "TOGGLE_DRAWER"
 };
