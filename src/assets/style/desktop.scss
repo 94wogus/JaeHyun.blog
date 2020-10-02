@@ -66,6 +66,19 @@
             font-weight: 700;
         }
     }
+    #private-policy{
+        padding-top: 5vh;
+        .profileimg{
+            @include flex-center;
+            img{
+                @include cover-img(20vw, 20vw);
+                border-radius: 50%
+            }
+        }
+        .content{
+            padding: 0px 5vw;
+        }
+    }
 
     .main{
         @include flex-center($justifyContent:flex-start, $direction: column);
