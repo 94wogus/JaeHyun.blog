@@ -1,62 +1,30 @@
-import axios from "axios"
-import moment from "moment"
 
-// dev
-export const BASE_URL = "http://localhost:8000";
-// prod
-
-
-axios.defaults.withCredentials = true;
+export const SPREATSHEET_URL = `https://sheets.googleapis.com/v4/spreadsheets/${process.env.REACT_APP_SPREADSHEET_ID}/values/Post?key=${process.env.REACT_APP_API_KEY}`
 
 export const METHOD = {
-    GET: { num: 0, type: "get" },
-    DELETE: { num: 1, type: "delete" },
-    POST: { num: 2, type: "post" },
-    PUT: { num: 3, type: "put" },
-    POST_FILES: { num: 4, type: "post" },
-    LOGIN: { num: 5, type: "post" }
+    GET: { num: 0, type: "GET" },
+    DELETE: { num: 1, type: "DELETE" },
+    POST: { num: 2, type: "POST" },
+    PUT: { num: 3, type: "PUT" },
+    POST_FILES: { num: 4, type: "POST" },
+    LOGIN: { num: 5, type: "POST" }
 };
 
 export const request = (method, url, payload={}) => {
-    let axiosConfig = { method: method.type, url: url };
+    let axiosConfig = {method: method.type};
     if (method.num <= 1) {
         axiosConfig = { ...axiosConfig};
     } else if (method.num <= 3) {
-        axiosConfig = { ...axiosConfig, data: payload };
+        axiosConfig = { ...axiosConfig, body: JSON.stringify(payload)};
     } else if (method.num <= 4) {
-        axiosConfig = {
-            ...axiosConfig,
-            headers: { "Content-Type": "multipart/form-data" },
-            data: payload
-        }
+        axiosConfig = {...axiosConfig, headers: { "Content-Type": "multipart/form-data" }, body: payload}
     } else {
-        axiosConfig = {
-            ...axiosConfig,
-            data: payload,
-        }
+        axiosConfig = { ...axiosConfig, body: JSON.stringify(payload)};
     }
-    return axios(axiosConfig)
-    .then((resp) => {
-        return resp.data
-    })
-    .catch((err) => console.log(err));
+    return fetch(url, axiosConfig)
+    .then((response) => {return response.json()})
+    .catch((error) => {console.error('Error:', error); return null})
 };
-
-export const checkAuthHeader = () =>{
-    var token = window.localStorage["token"];
-    var exp = window.localStorage["exp"] || 0;
-    var now = moment().unix()
-
-    if (exp > now && token !== undefined){
-        axios.defaults.headers.common['Authorization'] = `Token ${token}`;
-        return false
-    }
-    else{
-        window.localStorage.removeItem("token")
-        window.localStorage.removeItem("exp")
-        return true
-    }
-}
 
 export const packUrl = (url, param) => {
     Object.keys(param).forEach(function(key, index){

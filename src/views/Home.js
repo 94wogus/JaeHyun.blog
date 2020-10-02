@@ -1,28 +1,41 @@
 import React, {useEffect} from 'react';
 import {withRouter} from "react-router-dom"
-import { useDispatch, connect } from 'react-redux';
+import { useDispatch } from 'react-redux';
 
 import Container from "@components/common/Container"
+import { SPREATSHEET_URL, METHOD, request} from "@api";
 import { getPostList } from '@store/action'
 
 import Profile from "@components/Home/Profile"
+import PostList from "@components/Home/PostList"
 
 const Home = (props) => {
     const dispatch = useDispatch();
-    const { post_list, history } = props;
+    const { history } = props;
 
     useEffect(() => {
-        dispatch(getPostList())
+        request(METHOD.GET, SPREATSHEET_URL)
+        .then(result => {
+            var raw = result.values.reverse()
+            var index = raw.pop()
+
+            var payload = raw.map((item)=>(
+                Object.assign({},
+                    ...index.map((key, idx)=>({[key]: item[idx]}))
+                )
+            ))
+            dispatch(getPostList(payload))
+        })
+        
     }, []);
 
     return (
         <Container>
             <div id="home" className="main">
                 <Profile />
+                <PostList />
             </div>
         </Container>
     )
 }
-export default connect(state => ({
-    post_list: state.post_list
-}))(withRouter(Home));
+export default withRouter(Home);
