@@ -1,7 +1,7 @@
 @import "./variables";
 
 @mixin contentHeight{
-    min-height: calc(100vh - #{$headerHeight} - #{$headerYpadding} - #{$headerYpadding} - #{$footerHeight} - #{$footerYpadding} - #{$footerYpadding});
+    min-height: calc(100vh - #{$headerHeight} - #{$headerBottomMargin} - #{$footerHeight} - #{$footerYpadding} - #{$footerYpadding});
 }
 
 // float clear
@@ -76,6 +76,10 @@
     justify-content: $justifyContent;
     align-items: $alignItems;
     flex-direction: $direction;
+}
+
+@mixin background-opacity($color, $opacity: 0.3) {
+    background: rgba($color, $opacity);
 }
 
 // ======================================= animation ======================================= //

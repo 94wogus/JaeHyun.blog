@@ -1,22 +1,17 @@
-import React, {Fragment} from 'react';
+import React from 'react';
 import {withRouter} from "react-router-dom"
+import Container from "@components/common/Container"
 
-import {Grid, Paper} from '@material-ui/core';
-
-// import Header from "@components/common/Header"
-// import Footer from "@components/common/Footer"
-// import MenuCard from "@components/Home/MenuCard"
-
-import routes from "@/router"
-
+import Profile from "@components/Home/Profile"
 
 const Home = (props) => {
     return (
-        <Fragment>
-            <div>hello</div>
-        </Fragment>
+        <Container>
+            <div id="home" className="main">
+                <Profile /> 
+            </div>
+        </Container>
     )
 }
-
 
 export default withRouter(Home);
