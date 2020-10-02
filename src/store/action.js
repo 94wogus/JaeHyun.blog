@@ -7,3 +7,12 @@ export function toggleDrawer(bol) {
         payload: bol,
     };
 }
+
+export function getPostList(){
+    const apiKey = process.env.REACT_APP_GOOGLE_DRIVE_API_KEY
+    console.log(apiKey)
+    return {
+        type: Constant.GET_POST_LIST,
+        payload: [],
+    };
+}
