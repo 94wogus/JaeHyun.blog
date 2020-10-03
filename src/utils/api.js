@@ -10,7 +10,7 @@ export const METHOD = {
     LOGIN: { num: 5, type: "POST" }
 };
 
-export const request = (method, url, payload={}) => {
+export const request = (method, url, payload={}, json=false) => {
     let axiosConfig = {method: method.type};
     if (method.num <= 1) {
         axiosConfig = { ...axiosConfig};
@@ -22,13 +22,16 @@ export const request = (method, url, payload={}) => {
         axiosConfig = { ...axiosConfig, body: JSON.stringify(payload)};
     }
     return fetch(url, axiosConfig)
-    .then((response) => {return response.json()})
+    .then((response) => {
+        if (json){
+            return response.json()
+        } else{
+            return response.text()
+        }
+    })
     .catch((error) => {console.error('Error:', error); return null})
 };
 
-export const packUrl = (url, param) => {
-    Object.keys(param).forEach(function(key, index){
-        url = url + (index === 0 ? "?" : "&") + key + "=" + param[key]
-    })
-    return url
+export const packDocURL = (fid) => {
+    return `https://docs.google.com/feeds/download/documents/export/Export?id=${fid}&exportFormat=html`
 }

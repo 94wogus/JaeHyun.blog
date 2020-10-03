@@ -32,15 +32,6 @@ const snsList = [
 ]
 
 const Profile = (props) => {
-    const { history } = props;
-
-    const goHome = () => {
-        if (history.location.pathname !== "/home" && history.location.pathname !== "/" ){
-            // history.push('/home')
-            console.log("good")
-        }
-    }
-
     const goSns = (e) => {
         window.open(e.currentTarget.getAttribute("path"), '_blank');
     } 
