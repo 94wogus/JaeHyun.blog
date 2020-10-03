@@ -11,6 +11,8 @@ import {
 import routes from "@/router"
 import bear from "@image/bear.png"
 
+
+
 const LeftMenu = (props) => {
     const dispatch = useDispatch();
     const { menuSwitch, history } = props;

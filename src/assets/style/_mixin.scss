@@ -82,6 +82,19 @@
     background: rgba($color, $opacity);
 }
 
+@mixin scrollable() {
+    width: 100%;
+    height: auto;
+    overflow-x: auto;
+    ul {
+        display: inline-flex;
+        justify-content: flex-start;
+        align-items: flex-start;
+        list-style-type: none;
+        padding: 0px;
+    }
+}
+
 // ======================================= animation ======================================= //
 @mixin animation ($delay, $duration, $name) {
     animation-delay: $delay;

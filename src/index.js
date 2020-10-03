@@ -1,8 +1,9 @@
-import React, {Fragment} from 'react';
+import React, {Fragment, useEffect} from 'react';
 import ReactDOM from 'react-dom';
 import { Router, Switch, Route} from 'react-router-dom';
 import { createBrowserHistory } from 'history';
-import { Provider } from "react-redux";
+import { Provider, useDispatch } from "react-redux";
+
 import * as serviceWorker from './serviceWorker';
 
 import routes from '@/router';
@@ -11,8 +12,27 @@ import store from '@/store';
 import '@assets/style/common.css';
 import '@assets/style/desktop.scss';
 
+import { SPREATSHEET_URL, METHOD, request} from "@api";
+import { getPostList } from '@store/action'
+
 const App = () => {
+    const dispatch = useDispatch();
     const history = createBrowserHistory();
+
+    useEffect(() => {
+        request(METHOD.GET, SPREATSHEET_URL, {}, true)
+        .then(result => {
+            var index = result.values.shift()
+            var packed_post_list = result.values.map((item, n)=>(
+                Object.assign({},
+                    ...index.map((key, idx)=>({[key]: item[idx]}))
+                )
+            ))
+            dispatch(getPostList(packed_post_list))
+        })
+        
+    }, [dispatch]);
+
     return (
         <Fragment>
             <Router history={history}>
