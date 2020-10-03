@@ -1,8 +1,9 @@
 import React from 'react';
 import PrivacyPolicy from '@views/PrivacyPolicy';
 import Home from '@views/Home';
+import Post from '@views/Post';
 
-import HomeRoundedIcon from '@material-ui/icons/HomeRounded';
+import {HomeRounded, DescriptionOutlined} from '@material-ui/icons';
 
 const routes = [
     {
@@ -22,7 +23,14 @@ const routes = [
         path: '/home',
         component: Home,
         leftmenu: true,
-        icon: <HomeRoundedIcon fontSize="large" style={{marginLeft: 10}}/>
+        icon: <HomeRounded fontSize="large" style={{marginLeft: 10}}/>
+    },
+    {
+        name: 'post',
+        path: '/post',
+        component: Post,
+        leftmenu: true,
+        icon: <DescriptionOutlined fontSize="large" style={{marginLeft: 10}}/>
     }
 ];
 

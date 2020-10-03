@@ -7,9 +7,18 @@ export function toggleDrawer(bol) {
     };
 }
 
-export function getPostList(payload){
+export function getPostList(packed_post_list){
+    var sorted_post_list = packed_post_list.reverse()
     return {
         type: Constant.GET_POST_LIST,
-        payload: payload,
+        sorted_post_list: sorted_post_list,
+        post_list: packed_post_list
+    };
+}
+
+export function setPostPageNum(cur_page_num){
+    return {
+        type: Constant.CHANGE_POST_PAGE_NUM,
+        cur_page_num: cur_page_num
     };
 }
