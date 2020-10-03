@@ -1,11 +1,25 @@
 import React from 'react';
+import { useDispatch } from "react-redux";
+import {withRouter} from "react-router-dom"
 import {Card, CardActionArea, CardContent} from '@material-ui/core';
 
+import { setCurDoc } from '@store/action'
+
 const PostCard = (props) => {
-    const { post } = props;
+    const dispatch = useDispatch()
+    const { post, history } = props;
+
+    const readPost = (e) => {
+        dispatch(setCurDoc({
+            cur_doc: post,
+            cur_doc_id: e.currentTarget.id,
+            cur_doc_idx: e.currentTarget.getAttribute("idx")
+        }))
+        history.push(`/post/doc/${e.currentTarget.id}`)
+    }
 
     return (
-        <Card className="PostCard" key={post.PostId}>
+        <Card className="PostCard" id={post.PostId} idx={post.idx} onClick={readPost}>
             <CardActionArea className="PostContent">
                 <div className="PostImage">
                     <img 
@@ -24,4 +38,4 @@ const PostCard = (props) => {
     );
 };
 
-export default PostCard;
+export default withRouter(PostCard);

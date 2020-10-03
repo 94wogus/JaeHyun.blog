@@ -246,10 +246,15 @@
                     margin: 20px;
                     .seriesContent{
                         height: 100%;
-                        img{
-                            margin: 10px;
-                            @include cover-img(230px, 230px);
-                            border-radius: 10px;
+                        .seriesImage{
+                            width: 100%;
+                            height: 230px;
+                            @include flex-center;
+                            img{
+                                margin: 10px;
+                                @include cover-img(150px, 150px);
+                                border-radius: 10px;
+                            }
                         }
                         .seriesInfo{
                             @include flex-center($alignItems:flex-start, $direction:column);
@@ -299,5 +304,33 @@
                 margin: 20px 0px;
             }
         }
+    }
+    #docWrap{
+        font-family: "NanumSquare";
+        h1.docTitle{
+            margin: 0px;
+            margin-top: 50px;
+        }
+        h2.docsubTitle{
+            margin: 0px;
+        }
+        span.docTime{
+            align-self: flex-end;
+            margin-right: 10%;
+            font-size: 15px;
+            color: #4c4c4c;
+            font-weight:800;
+        }
+        .docDivider{
+            width: 80%;
+            margin-top: 20px;
+            margin-bottom: 50px;
+        }
+    }
+    #doc{
+        width: 794px;
+        p{
+            margin-bottom: 15px;
+        }   
     }
 }

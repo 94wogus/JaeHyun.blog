@@ -30,6 +30,12 @@ export default function rootReducer(state=initialState, action){
                 cur_page_num: action.cur_page_num,
                 cur_page_post_list: state.post_list.slice(begin, end)
             })
+        case Constant.SET_CUR_DOC_ID:
+            return Object.assign({}, state, {
+                cur_doc: action.cur_doc,
+                cur_doc_id: action.cur_doc_id,
+                cur_doc_idx: action.cur_doc_idx
+            })
         default:
             return state;
     }

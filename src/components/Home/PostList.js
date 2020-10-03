@@ -25,7 +25,7 @@ const PostList = (props) => {
             </div>
             <div className="PostWarp">
             {post_list.slice(0, 10).map((post)=>(
-                <PostCard post={post} />
+                <PostCard post={post} key={post.PostId}/>
             ))}
             </div>
         </div>

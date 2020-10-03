@@ -21,7 +21,7 @@ const PostList = (props) => {
             <h1 className="titleWrap">JaeHyun's Posts</h1>
             <div className="PostWarp">
             {cur_page_post_list.map((post)=>(
-                <PostCard post={post} />
+                <PostCard post={post} key={post.PostId} />
             ))}
             </div>
             <Pagination 

@@ -20,10 +20,10 @@ const App = () => {
     const history = createBrowserHistory();
 
     useEffect(() => {
-        request(METHOD.GET, SPREATSHEET_URL)
+        request(METHOD.GET, SPREATSHEET_URL, {}, true)
         .then(result => {
             var index = result.values.shift()
-            var packed_post_list = result.values.map((item)=>(
+            var packed_post_list = result.values.map((item, n)=>(
                 Object.assign({},
                     ...index.map((key, idx)=>({[key]: item[idx]}))
                 )
